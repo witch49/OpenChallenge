@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ch06 오픈챌린지</title>
+  <script>
+    function star(num) {
+      var max = parseInt(num); // 사용자가 입력한 수
+      if (isNaN(max)) { // n이 실수가 아닌 경우
+        document.write("입력 오류입니다.");
+        return;
+      }
+      for (var i = 1; i <= max; i++) {
+        for (var j = 0; j < i; j++)
+          document.write("*");
+        document.write("<br>");
+      }
+      for (var i = 0; i <= max; i++) {
+        for (var x = 0; x <= (i-1); x++)
+          document.write("&nbsp;");
+        for (var j = max; j > i; j--)
+          document.write("*");
+        document.write("<br>");
+      }
+
+      //////////////////////////////
+      /*
+            for (var i = 0; i <= max; i++) {
+              for (var j = max; j > i; j--) {
+                var x = 0;
+                if (x <= (i-1)) {
+                  document.write("&nbsp");
+                  x++;
+                }
+                else {
+                  document.write("*");
+                }
+              }
+              document.write("<br>");
+            }
+            */
+      /////////////////////////////
+
+    }
+  </script>
+</head>
+
+<body>
+  <h3>별 문자 출력하기</h3>
+  <hr>
+  <script>
+    var num = prompt("정수를 입력하세요", "");
+    star(num);
+  </script>
+</body>
+
+</html>
