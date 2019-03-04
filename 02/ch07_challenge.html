@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ch07 OpenChallenge</title>
+  <!--
+  중복 이름 없앤 이름들 목록 배열 : newNames
+  newNames[0] = names[0].trim();
+  나머진 names[1] ... names[names.length-1]
+  정렬 이후 (2번)
+  newNames -> lastNames(성씨 저장 배열), lastCount(성씨 몇 번 있는지 횟수 저장 배열)
+  -->
+</head>
+<body>
+  <h3>Chapter07 오픈챌린지</h3>
+  <hr>
+  <script>
+    var input = prompt("이름을 입력하시오", "홍길동,김길동,한길동,홍길동,김영희,한영희,박영희,홍철수,홍영희");
+    var sub = input.split(",");
+
+    /* 앞뒤 공백 제거 */
+    for(var i=0; i<sub.length; i++)
+      sub[i] = sub[i].trim();
+
+    for(var i=0; i<sub.length; i++) {
+      document.write(sub[i] + "&nbsp;");
+    }
+    document.write("<h4>1) 중복 제거 후 오름차순 정렬</h4>");
+
+    for (var i=0; i<sub.length; i++) {
+      for (var j=0; j<sub.length; j++) {
+        if (i == j)
+          break;
+        /* 중복이 있는 경우 제거 */
+        while (sub[j].indexOf(sub[i]) != -1) {
+          sub.splice(sub.indexOf(sub[i]), 1);
+        }
+      }
+    }
+    /* 중복 제거 후 이름 정렬 */
+    sub.sort();
+    for(var i=0; i<sub.length; i++)
+      document.write(sub[i] + "&nbsp;");
+
+    document.write("<br><h4>2) 성씨별로 몇 명 있는지 찾기</h4>");
+    var lastNames = [];
+    var lastCount = [];
+    /* 성 추출 */
+    for(var i=0; i<sub.length; i++){
+      lastNames[i] = sub[i].charAt(0);
+    }
+    /* 추출한 성씨 정렬 */
+    lastNames.sort();
+
+    for(var i=0; i<lastNames.length; i++) {
+      var index = lastNames[i];
+      lastCount[index] = lastCount[index] == undefined ? 1 : lastCount[index] += 1;
+    }
+
+    for(var i in lastCount) {
+      document.write(i + " 씨 성을 가진 사람 수 : " + lastCount[i] + "명<br>");
+    }
+
+  </script>
+</body>
+</html>
